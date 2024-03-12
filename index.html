@@ -1,0 +1,103 @@
+<form id="bmi-calculator">
+    <fieldset>
+      <legend>Please Choose which BMI you would like to use :</legend>
+      <label>
+        BMI in Kgs / Meters
+        <input type="radio" name="bmi" value="kgs" checked>
+      </label>
+      <label>
+        BMI in Lbs / Feet
+        <input type="radio" name="bmi" value="lbs">
+      </label>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Calculate Your BMI:</legend>
+      <label for="height">Height:</label>
+      <input type="number" id="height" name="height" step="any" min="0">
+  
+      <label for="weight">Weight:</label>
+      <input type="number" id="weight" name="weight" step="any" min="0">
+  
+      <button type="button" id="calculate-btn">Calculate</button>
+    </fieldset>
+    
+    <fieldset id="result-fieldset">
+      <legend>BMI Result:</legend>
+      <output id="result" name="result" value="0"></output>
+    </fieldset>
+  </form>
+  
+  <style id="aesthetic-style">
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+  
+    fieldset {
+      border: none;
+      margin: 20px 0;
+      padding: 0;
+    }
+  
+    legend {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  
+    button:hover {
+      background-color: #45a049;
+    }
+  
+    output {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+  </style>
+  
+  <script id="bmi-script">
+    document.getElementById('calculate-btn').addEventListener('click', function() {
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      const bmi = document.querySelector('input[name="bmi"]:checked').value;
+  
+      if (bmi === 'kgs') {
+        document.getElementById('result').value = (weight / (height * height)).toFixed(2);
+      } else {
+        document.getElementById('result').value = (((weight * 2.2046) / (height * 0.0254) ** 2)).toFixed(2);
+      }
+    });
+  </script>
